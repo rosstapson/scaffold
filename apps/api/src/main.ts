@@ -1,13 +1,15 @@
 import * as express from 'express';
-import { Message } from '@afrilaser/api-interfaces';
+
+import { addTodoRoutes } from './app/todos'
 
 const app = express();
 
-const greeting: Message = { message: 'Welcome to api!' };
 
 app.get('/api', (req, res) => {
-  res.send(greeting);
+  res.send('zomg');
 });
+
+addTodoRoutes(app)
 
 const port = process.env.port || 3333;
 const server = app.listen(port, () => {

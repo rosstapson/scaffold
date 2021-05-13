@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@afrilaser/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@afrilaser/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@afrilaser/data": ["libs/data/src/index.ts"],
+      "@afrilaser/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

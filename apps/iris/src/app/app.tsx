@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Message } from '@afrilaser/api-interfaces';
+import { Todo } from '@afrilaser/data'
+import { Todos } from '@afrilaser/ui'
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
+  
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
+    fetch('/api/todos')
+      .then((_) => _.json())
+      .then(setTodos);
   }, []);
 
+  const addTodo = () => {
+    fetch('/api/addTodo', {
+      method: 'POST',
+      body: '',
+    })
+      .then((_) => _.json())
+      .then((newTodo) => {
+        setTodos([...todos, newTodo]);
+      });
+  }
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to iris!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-          alt="Nx - Powerful, Extensible Dev Tools"
-        />
-      </div>
-      <div>{m.message}</div>
+      <h1>Todos</h1>
+      <Todos todos={todos} />
+      <button id={'add-todo'} onClick={addTodo}>zomg</button>
     </>
   );
 };
